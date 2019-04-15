@@ -1,0 +1,325 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><script id="allow-copy_script">(function agent() {
+    let isUnlockingCached = false
+    const isUnlocking = () => isUnlockingCached
+    document.addEventListener('allow_copy', event => {
+      const { unlock } = event.detail
+      isUnlockingCached = unlock
+    })
+
+    const copyEvents = [
+      'copy',
+      'cut',
+      'contextmenu',
+      'selectstart',
+      'mousedown',
+      'mouseup',
+      'mousemove',
+      'keydown',
+      'keypress',
+      'keyup',
+    ]
+    const rejectOtherHandlers = e => {
+      if (isUnlocking()) {
+        e.stopPropagation()
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation()
+      }
+    }
+    copyEvents.forEach(evt => {
+      document.documentElement.addEventListener(evt, rejectOtherHandlers, {
+        capture: true,
+      })
+    })
+  })()</script><head> <script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) { var CloudFlare=[{verbose:0,p:1338752868,byc:0,owlid:"cf",mirage:0,oracle:"b9/14046b8a439c572d09ed76a1e4bda4",paths:{cloudflare:"/cdn-cgi/nexp/v=2965651658/"},atok:"0cfca7095c0ebcfc83d4d3a0dce81d9e",zone:"ugnazi.ru",rocket:"a",apps:{"sitelock":{"domain":"ugnazi.ru","position":"bottom_right"}}}];document.write('<script type="text/javascript" src="//ajax.cloudflare.com/cdn-cgi/nexp/v=3037830340/cloudflare.min.js"><'+'\/script>')}}catch(a){};
+//]]>
+</script><script type="text/javascript" src="//ajax.cloudflare.com/cdn-cgi/nexp/v=3037830340/cloudflare.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+window.__CF=window.__CF||{};window.__CF.AJS={"sitelock":{"domain":"ugnazi.ru","position":"bottom_right"}};
+//]]>
+</script>
+<script type="text/rocketscript">
+//<![CDATA[
+try{if (!window.CloudFlare) { var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",mirage:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/v=2965651658/"},atok:"eef4f183646f8e3f6dfcc2630afcb72f",zone:"ugnazi.com",rocket:"a",apps:{}}];document.write('<script type="text/javascript" src="//ajax.cloudflare.com/cdn-cgi/nexp/v=3037830340/cloudflare.min.js"><'+'\/script>')}}catch(a){};
+//]]>
+</script>
+<title>UGNazi - H4ck3rGr0up</title>
+<link rel="shortcut icon" href="http://UGNazi.ru/favicon.ico" type="image/x-icon">
+<style type="text/css" media="screen">BODY{font-family:Verdana,Arial;font-size:12px;color:#ff;background-color:black;background-image:url(http://i.imgur.com/4q2Op.gif);background-repeat:repeat;}#Container{width:780px;margin-left:auto;margin-right:auto;}#Content{background-color:black;border:1px solid #24262B;padding:10px;margin-top:-13px;}#Title{font-family:Verdana,Arial;font-size:22px;font-weight:bold;color:#333333;border-bottom:1px solid #24262B;margin-bottom:10px;}#Copyright{text-align:center;}.style3{color:#400000;font-size:12;font-family:Georgia,"Times New Roman",Times,serif;}.style10{color:#222;font-size:+28;}.style13{color:#FFFFFF;}.style14{color:#999999}.style16{font-size:14px}.style17{color:#400000}.style1337{color:#FF00FF}</style>
+<script type="text/rocketscript"> 
+TypingText = function(element, interval, cursor, finishedCallback) {
+  if((typeof document.getElementById == "undefined") || (typeof element.innerHTML == "undefined")) {
+    this.running = true;
+    return;
+  }
+  this.element = element;
+  this.finishedCallback = (finishedCallback ? finishedCallback : function() { return; });
+  this.interval = (typeof interval == "undefined" ? 100 : interval);
+  this.origText = this.element.innerHTML;
+  this.unparsedOrigText = this.origText;
+  this.cursor = (cursor ? cursor : "");
+  this.currentText = "";
+  this.currentChar = 0;
+  this.element.typingText = this;
+  if(this.element.id == "") this.element.id = "typingtext" + TypingText.currentIndex++;
+  TypingText.all.push(this);
+  this.running = false;
+  this.inTag = false;
+  this.tagBuffer = "";
+  this.inHTMLEntity = false;
+  this.HTMLEntityBuffer = "";
+}
+TypingText.all = new Array();
+TypingText.currentIndex = 0;
+TypingText.runAll = function() {
+  for(var i = 0; i < TypingText.all.length; i++) TypingText.all[i].run();
+}
+TypingText.prototype.run = function() {
+  if(this.running) return;
+  if(typeof this.origText == "undefined") {
+    setTimeout("document.getElementById('" + this.element.id + "').typingText.run()", this.interval);
+    return;
+  }
+  if(this.currentText == "") this.element.innerHTML = "";
+  if(this.currentChar < this.origText.length) {
+    if(this.origText.charAt(this.currentChar) == "<" && !this.inTag) {
+      this.tagBuffer = "<";
+      this.inTag = true;
+      this.currentChar++;
+      this.run();
+      return;
+    } else if(this.origText.charAt(this.currentChar) == ">" && this.inTag) {
+      this.tagBuffer += ">";
+      this.inTag = false;
+      this.currentText += this.tagBuffer;
+      this.currentChar++;
+      this.run();
+      return;
+    } else if(this.inTag) {
+      this.tagBuffer += this.origText.charAt(this.currentChar);
+      this.currentChar++;
+      this.run();
+      return;
+    } else if(this.origText.charAt(this.currentChar) == "&" && !this.inHTMLEntity) {
+      this.HTMLEntityBuffer = "&";
+      this.inHTMLEntity = true;
+      this.currentChar++;
+      this.run();
+      return;
+    } else if(this.origText.charAt(this.currentChar) == ";" && this.inHTMLEntity) {
+      this.HTMLEntityBuffer += ";";
+      this.inHTMLEntity = false;
+      this.currentText += this.HTMLEntityBuffer;
+      this.currentChar++;
+      this.run();
+      return;
+    } else if(this.inHTMLEntity) {
+      this.HTMLEntityBuffer += this.origText.charAt(this.currentChar);
+      this.currentChar++;
+      this.run();
+      return;
+    } else {
+      this.currentText += this.origText.charAt(this.currentChar);
+    }
+    this.element.innerHTML = this.currentText;
+    this.element.innerHTML += (this.currentChar < this.origText.length - 1 ? (typeof this.cursor == "function" ? this.cursor(this.currentText) : this.cursor) : "");
+    this.currentChar++;
+    setTimeout("document.getElementById('" + this.element.id + "').typingText.run()", this.interval);
+  } else {
+	this.currentText = "";
+	this.currentChar = 0;
+        this.running = false;
+        this.finishedCallback();
+  }
+}
+</script>
+<script language="JavaScript" type="text/rocketscript">
+<!-- Disable
+function disableselect(e){
+return false
+}
+
+function reEnable(){
+return true
+}
+
+//if IE4+
+document.onselectstart=new Function ("return false")
+document.oncontextmenu=new Function ("return false")
+//if NS6
+if (window.sidebar){
+document.onmousedown=disableselect
+document.onclick=reEnable
+}
+//-->
+</script>
+</head>
+<body onload="(function(a){window.CloudFlare &amp;&amp; window.CloudFlare.push(function(b){b([&quot;cloudflare/rocket&quot;],function(c){c.push(function(){(function(){(function(a){window.CloudFlare &amp;&amp; window.CloudFlare.push(function(b){b([&quot;cloudflare/rocket&quot;],function(c){c.push(function(){(function(){scrlsts()}).call(a)})})})})(this);}).call(a)})})})})(this);" cz-shortcut-listen="true"><script type="text/javascript">
+//<![CDATA[
+try{(function(a){var b="http://",c="ugnazi.com",d="/cdn-cgi/cl/",e="656ba9dbedd83660fdd8362ac6bb38729bb57e45.gif",f=new a;f.src=[b,c,d,e].join("")})(Image)}catch(e){}
+//]]>
+</script>
+<script language="JavaScript" type="text/rocketscript"> 
+<!--
+ 
+var max=0;
+function textlist()
+{
+        max=textlist.arguments.length;
+        for (i=0; i<max; i++)
+                this[i]=textlist.arguments[i];
+}
+ 
+tl=new textlist
+(
+" UGNazi - H4ck3rGr0up",
+" UGNazi - H4ck3rGr0up "
+" UGNazi - H4ck3rGr0up ",
+" UGNazi - H4ck3rGr0up",
+" UGNazi - H4ck3rGr0up,
+" UGNazi - H4ck3rGr0up",
+" get@me."
+);
+ 
+var text_x=0; pos=0;
+var l=tl[0].length;
+ 
+function textticker()
+{
+        document.form1.textfeld.value=tl[text_x].substring(0,pos)+"_";
+ 
+        if(pos++==l)
+        {
+                pos=0;
+                setTimeout("textticker()",2000);
+                text_x++;
+                if(text_x==max)
+                        text_x=0;
+                l=tl[text_x].length;
+        } else
+                setTimeout("textticker()",50);
+}
+ 
+function StartTexte()
+{
+	textticker();
+}
+ 
+// -->
+</script>
+<p align="center">
+<font size="5" color="#333" face="Courier New">
+<marquee behavior="scroll" direction="left" scrollamount="9" scrolldelay="10" width="26%"><span class="footerlink"><b><font color="#29AFD6">UGNazi.com: H4ck3rGr0up</font></b></span></marquee>
+</font>
+</p>
+<div id="Container">
+<div id="Title">
+<center><font color="#52FF20">Welcome Nazis</font><br>
+<font size="3"></font> <a href="/targets.html" target="_blank"><font color="#FF800D">Targets &amp; Reasons</font></a></center><br>
+</div>
+<br>
+<div id="Content">
+<p align="center">
+</p><h1><b><center><script type="text/rocketscript"> 
+farbbibliothek = new Array(); 
+farbbibliothek[0] = new Array("#FF0000","#FF1100","#FF2200","#FF3300","#FF4400","#FF5500","#FF6600","#FF7700","#FF8800","#FF9900","#FFaa00","#FFbb00","#FFcc00","#FFdd00","#FFee00","#FFff00","#FFee00","#FFdd00","#FFcc00","#FFbb00","#FFaa00","#FF9900","#FF8800","#FF7700","#FF6600","#FF5500","#FF4400","#FF3300","#FF2200","#FF1100"); 
+farbbibliothek[1] = new Array("#00FF00","#000000","#00FF00","#00FF00"); 
+farbbibliothek[2] = new Array("#00FF00","#FF0000","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00"); 
+farbbibliothek[3] = new Array("#000","#111","#222","#333","#444","#555","#666","#777","#888","#888","#777","#666","#555","#444","#333","#222","#111","#000"); 
+farbbibliothek[4] = new Array("#FF0000","#EE0000","#DD0000","#CC0000","#BB0000","#AA0000","#990000","#880000","#770000","#660000","#550000","#440000","#330000","#220000","#110000","#000000","#110000","#220000","#330000","#440000","#550000","#660000","#770000","#880000","#990000","#AA0000","#BB0000","#CC0000","#DD0000","#EE0000"); 
+farbbibliothek[5] = new Array("#000000","#000000","#000000","#FFFFFF","#FFFFFF","#FFFFFF"); 
+farbbibliothek[6] = new Array("#0000FF","#FFFF00"); 
+farben = farbbibliothek[4];
+function farbschrift() 
+{ 
+for(var i=0 ; i<Buchstabe.length; i++) 
+{ 
+document.all["a"+i].style.color=farben[i]; 
+} 
+farbverlauf(); 
+} 
+function string2array(text) 
+{ 
+Buchstabe = new Array(); 
+while(farben.length<text.length) 
+{ 
+farben = farben.concat(farben); 
+} 
+k=0; 
+while(k<=text.length) 
+{ 
+Buchstabe[k] = text.charAt(k); 
+k++; 
+} 
+} 
+function divserzeugen() 
+{ 
+for(var i=0 ; i<Buchstabe.length; i++) 
+{ 
+document.write("<span id='a"+i+"' class='a"+i+"'>"+Buchstabe[i] + "</span>"); 
+} 
+farbschrift(); 
+} 
+var a=1; 
+function farbverlauf() 
+{ 
+for(var i=0 ; i<farben.length; i++) 
+{ 
+farben[i-1]=farben[i]; 
+} 
+farben[farben.length-1]=farben[-1]; 
+ 
+setTimeout("farbschrift()",30); 
+} 
+// Zu Demonstrationszwecken***************** 
+var farbsatz=1; 
+function farbtauscher() 
+{ 
+farben = farbbibliothek[farbsatz]; 
+while(farben.length<text.length) 
+{ 
+farben = farben.concat(farben); 
+} 
+farbsatz=Math.floor(Math.random()*(farbbibliothek.length-0.0001)); 
+} 
+setInterval("farbtauscher()",5000); 
+text= "UGNazi :: H4ck3rGr0up"; //h 
+string2array(text); 
+divserzeugen(); 
+//document.write(text);</script></center></b></h1>
+<p></p>
+<center>
+<p align="center" class="style3" id="message">
+<span class="style10"><b><font color="#FBFDFB">Fuck3d bY</font> <font color="#0000CE">TkaTheGod </font>, <font color="#F70000">Junekomori</font>, <font color="#1FCB4A">Cosmo (Alex Irvin)</font> &amp; <font color="#FFE920">CyberZeist (Thomas Ryan)</font></b></span><br>
+<span class="style10"><a href="http://twitter.com/UG" target="_blank"><b><font color="#FBFDFB">Follow us on Twitter</font></b></a></span><br>
+<span class="style10"><img src="http://i.imgur.com/kPPCc.jpg" height="80%" width="90%"></span><br>
+</p><p align="center" class="style3">
+<span class="style17">Contact : </span><span class="style3"> <strong><a id="__cf_email__" href="http://cloudflare.com/email-protection.html" class="1c51736874796e5c5b717d7570327f7371">[email&nbsp;protected]</a><script type="text/rocketscript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l=document.getElementById("__cf_email__");a=l.className;if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></strong></span>
+<script type="text/rocketscript"> 
+			new TypingText(document.getElementById("message"), 50, function(i){ var ar = new Array("\\", "|", "/", "-"); return " " + ar[i.length % ar.length]; });
+			 
+			//Type out examples:
+			TypingText.runAll();
+			 
+				</script>
+</p>
+<p></p>
+<p id="Copyright" align="center"><font color="#565051" size="2" face="Courier New"><br>
+Copyright © 2019 UGNazi.com<br><br><img src="https://cdn.discordapp.com/attachments/565399005736075285/567385061888884756/Logo8888.gif" height="100px" width="100px"></font>
+<embed src="https://instaud.io/_/3tHx.mp3" width="0" height="0"></p> 
+	
+	<br>
+
+	</center>
+</div>
+</div>
+
+
+</body></html>
