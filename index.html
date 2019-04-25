@@ -1,17 +1,44 @@
-<html><head><title>MarsHall@AnarchoXploit</title>
-<link rel="icon" href="http://www.clker.com/cliparts/t/I/r/T/c/c/black-flag-md.png">
+<html><script id="allow-copy_script">(function agent() {
+    let isUnlockingCached = false
+    const isUnlocking = () => isUnlockingCached
+    document.addEventListener('allow_copy', event => {
+      const { unlock } = event.detail
+      isUnlockingCached = unlock
+    })
+
+    const copyEvents = [
+      'copy',
+      'cut',
+      'contextmenu',
+      'selectstart',
+      'mousedown',
+      'mouseup',
+      'mousemove',
+      'keydown',
+      'keypress',
+      'keyup',
+    ]
+    const rejectOtherHandlers = e => {
+      if (isUnlocking()) {
+        e.stopPropagation()
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation()
+      }
+    }
+    copyEvents.forEach(evt => {
+      document.documentElement.addEventListener(evt, rejectOtherHandlers, {
+        capture: true,
+      })
+    })
+  })()</script><head><title>HACKED!</title>
+<link href="https://i.imgur.com/feyG8z6.png" rel="shortcut icon">
 <meta name="description" content="~We Just Anarchy">
 <meta charset="UTF-8">
 <style>
 *{
 font-family: "Courier New";
 }
-html {
-background: white;
-color: black;
-}
 </style>
-</head><body style="background-color: black; color: white"><center>
+</head><body style="background-color: black; color: white" cz-shortcut-listen="true"><center>
 <table width="100%" height="100%">
 <tbody><tr><td align="centeR">
 <br><br>
@@ -24,4 +51,5 @@ Copyleft © 2019 - UGNazi
 <hacked>
 <br>
 <span style="visibility: hidden"></span>
-<embed src="https://instaud.io/_/3AXp.mp3" autoplay="true" width="0" height="0"></hacked></td></tr></tbody></table></center></body></html>
+<embed src="https://instaud.io/_/3AXp.mp3" autoplay="true" width="0" height="0"></hacked></td></tr></tbody></table></center>
+</body></html>
